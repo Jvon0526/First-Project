@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+
+
+
+
+
+<div>
+
+  User Id: <input type="text" id="uid"><br>
+
+  First Name: <input type="text" id="fname"><br>
+
+  Last Name: <input type="text" id="lname"><br>
+
+  Birthday: <input type="date" id="birthday"> <br>
+
+  <button id="accept_btn" onclick="validate()">Accept</button><br>
+
+  <h1 id="dateDiff"></h1>
+
+  <p id="x"></p>
+
+</div>
+
+
+
+<script>
+
+  // put your JavaScript code to read HTML inputs
+
+  // and validate inputs here using if statements
+
+  // and document.getElementById().innerHTML to display results
+
+  // write your JS functions here
+
+  // write your JS Loop For here to print the Xs
+
+  // use something like document.write(str.padStart(i,"x") + "<br>");
+
+  function validate() {
+
+    const uid = document.getElementById("uid").value;
+
+    const fname = document.getElementById("fname").value;
+
+    const lname = document.getElementById("lname").value;
+
+    const birthday = document.getElementById("birthday").value;
+
+    let days = dateDiff(birthday);
+
+    const regex1 = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+
+    if (uid == "" || !uid.match(regex1)) {
+
+      alert("Invalid user id!");
+
+    }
+
+    if (fname == "") {
+
+      alert("Invalid first name!");
+
+    }
+
+    if (lname == "") {
+
+      alert("Invalid last name!");
+
+    }
+
+    if (birthday == "") {
+
+      alert("Invalid birthday!");
+
+    }
+
+    function dateDiff() {
+
+      const todayDate = new Date();
+
+      const birthday = new Date(document.getElementById("birthday").value);
+
+      const diffMilliseconds = (todayDate - birthday);
+
+      const diffDays = Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24));
+
+      const fname = document.getElementById("fname").value;
+
+      const lname = document.getElementById("lname").value;
+
+
+
+      const h1 = document.getElementById("dateDiff");
+
+      if (diffDays < 365 * 18) {
+
+        h1.innerHTML = fname + " " + lname +
+
+                " You are probably not old enought to take this class";
+
+      } else {
+
+        h1.innerHTML = fname + " " + lname + " ," + " you have been breathing for " +                     diffDays + " days.";
+
+      }
+
+    }
+
+    let str = "";
+
+    for (let i = 1; i <= 20; i++) {
+
+      for (let j = 0; j < i; j++) {
+
+        str += "x";
+
+      }
+
+      str = str.padStart(i,"x");
+
+      str += "<br>";
+
+      document.getElementById("x").innerHTML = str;
+
+
+
+    }
+
+  }
+
+</script>
+
+
+
+</body>
+
+</html>
